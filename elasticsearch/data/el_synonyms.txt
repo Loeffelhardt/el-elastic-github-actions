@@ -1,0 +1,11 @@
+ycy,ycym
+brown,braun,ral8003
+yellow,gelb,ral1021
+grey,grau,ral7000
+green,grün,ral6018
+ral7032,kieselgrau
+lgr,lichtgrau,ral7035
+ral2003,orange
+reinweiss,reinweiß,rws,ral9010,polarweiss
+pink,rosa,ral3015
+black,schwarz,ral9005,nero
