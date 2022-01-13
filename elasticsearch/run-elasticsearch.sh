@@ -9,7 +9,9 @@ fi
 
 MAJOR_VERSION=`echo ${STACK_VERSION} | cut -c 1`
 
-docker network create elastic
+if [[ "$(docker network ls | grep "elastic")" == "" ]] ; then
+    docker network create elastic
+fi
 
 for (( node=1; node<=${NODES-1}; node++ ))
 do
