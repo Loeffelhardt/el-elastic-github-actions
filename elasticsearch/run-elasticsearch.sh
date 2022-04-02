@@ -13,6 +13,18 @@ if [[ "$(docker network ls | grep "elastic")" == "" ]] ; then
     docker network create elastic
 fi
 
+mkdir -p /es/plugins/
+chown -R 1000:1000 /es/
+
+if [[ ! -z $PLUGINS ]]; then
+  docker run --rm \
+    --network=elastic \
+    -v /es/plugins/:/usr/share/elasticsearch/plugins/ \
+    --entrypoint=/usr/share/elasticsearch/bin/elasticsearch-plugin \
+    docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION} \
+    install ${PLUGINS/\\n/ } --batch
+fi
+
 for (( node=1; node<=${NODES-1}; node++ ))
 do
   port_com=$((9300 + $node - 1))
@@ -43,6 +55,7 @@ do
       --detach \
       --network=elastic \
       --name="es${node}" \
+      -v /es/plugins/:/usr/share/elasticsearch/plugins/ \
       docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION}
 
     docker cp el_synonyms.txt es${node}:/usr/share/elasticsearch/config/el_synonyms.txt
@@ -66,6 +79,7 @@ do
       --detach \
       --network=elastic \
       --name="es${node}" \
+      -v /es/plugins/:/usr/share/elasticsearch/plugins/ \
       docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION}
 
     docker cp el_synonyms.txt es${node}:/usr/share/elasticsearch/config/el_synonyms.txt
@@ -92,6 +106,7 @@ do
       --detach \
       --network=elastic \
       --name="es${node}" \
+      -v /es/plugins/:/usr/share/elasticsearch/plugins/ \
       docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION}
 
     docker cp el_synonyms.txt es${node}:/usr/share/elasticsearch/config/el_synonyms.txt
