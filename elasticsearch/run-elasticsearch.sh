@@ -85,7 +85,7 @@ do
     docker cp el_synonyms.txt es${node}:/usr/share/elasticsearch/config/el_synonyms.txt
   elif [ "x${MAJOR_VERSION}" == 'x8' ]; then
     if [ "${SECURITY_ENABLED}" == 'true' ]; then
-      elasticsearch_password=${elasticsearch_password-'changeme'}
+      elasticsearch_password=${ELASTICSEARCH_PASSWORD-'changeme'}
       docker run \
         --rm \
         --env "ELASTIC_PASSWORD=${elasticsearch_password}" \
@@ -149,7 +149,7 @@ if [ "x${MAJOR_VERSION}" == 'x8' ] && [ "${SECURITY_ENABLED}" == 'true' ]; then
     --show-error \
     --silent \
     -k \
-    -u elastic:${elasticsearch_password-'changeme'} \
+    -u elastic:${ELASTICSEARCH_PASSWORD-'changeme'} \
     https://es1:$PORT
 else
   docker run \
