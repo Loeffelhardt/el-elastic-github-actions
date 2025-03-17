@@ -20,6 +20,10 @@ ___
 | `nodes`                  | No       | 1        | Number of nodes in the cluster.                                                                                                           |
 | `port`                   | No       | 9200     | Port where you want to run Elasticsearch.                                                                                                 |
 | `elasticsearch_password` | No       | changeme | The password for the user elastic in your cluster                                                                                         |
+| `wait`                   | No       | 10       | Number of seconds to wait after launch.                                                                                                   |
+| `plugins`                | No       |          | Any plugins you want to include                                                                                                           |
+| `network-name`           | No       | elastic  | Custom name for the network created by Docker                                                                                             |
+| `container-name`         | No       | es       | Custom name for the container created by Docker                                                                                           |
 
 ## Usage
 
