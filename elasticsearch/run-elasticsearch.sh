@@ -60,7 +60,7 @@ do
       -v /es/plugins/:/usr/share/elasticsearch/plugins/ \
       docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION}
 
-    docker cp el_synonyms.txt es${node}:/usr/share/elasticsearch/config/el_synonyms.txt
+    docker cp el_synonyms.txt "${CONTAINER_NAME}${node}":/usr/share/elasticsearch/config/el_synonyms.txt
   elif [ "x${MAJOR_VERSION}" == 'x7' ]; then
     docker run \
       --rm \
@@ -84,7 +84,7 @@ do
       -v /es/plugins/:/usr/share/elasticsearch/plugins/ \
       docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION}
 
-    docker cp el_synonyms.txt es${node}:/usr/share/elasticsearch/config/el_synonyms.txt
+    docker cp el_synonyms.txt "${CONTAINER_NAME}${node}":/usr/share/elasticsearch/config/el_synonyms.txt
   elif [ "x${MAJOR_VERSION}" == 'x8' ] || [ "x${MAJOR_VERSION}" == 'x9' ]; then
     if [ "${SECURITY_ENABLED}" == 'true' ]; then
       elasticsearch_password=${ELASTICSEARCH_PASSWORD-'changeme'}
@@ -110,7 +110,7 @@ do
         -v /es/plugins/:/usr/share/elasticsearch/plugins/ \
         docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION}
 
-        docker cp el_synonyms.txt es${node}:/usr/share/elasticsearch/config/el_synonyms.txt
+        docker cp el_synonyms.txt "${CONTAINER_NAME}${node}":/usr/share/elasticsearch/config/el_synonyms.txt
     else
       docker run \
         --rm \
@@ -134,7 +134,7 @@ do
         -v /es/plugins/:/usr/share/elasticsearch/plugins/ \
         docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION}
 
-        docker cp el_synonyms.txt es${node}:/usr/share/elasticsearch/config/el_synonyms.txt
+        docker cp el_synonyms.txt "${CONTAINER_NAME}${node}":/usr/share/elasticsearch/config/el_synonyms.txt
     fi
   fi
 done
