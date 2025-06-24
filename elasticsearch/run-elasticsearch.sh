@@ -61,6 +61,8 @@ do
       docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION}
 
     docker cp el_synonyms.txt "${CONTAINER_NAME}${node}":/usr/share/elasticsearch/config/el_synonyms.txt
+    docker cp german_words.txt "${CONTAINER_NAME}${node}":/usr/share/elasticsearch/config/german_words.txt
+    docker cp hyphenation_patterns_de.xml "${CONTAINER_NAME}${node}":/usr/share/elasticsearch/config/hyphenation_patterns_de.xml
   elif [ "x${MAJOR_VERSION}" == 'x7' ]; then
     docker run \
       --rm \
@@ -85,6 +87,8 @@ do
       docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION}
 
     docker cp el_synonyms.txt "${CONTAINER_NAME}${node}":/usr/share/elasticsearch/config/el_synonyms.txt
+    docker cp german_words.txt "${CONTAINER_NAME}${node}":/usr/share/elasticsearch/config/german_words.txt
+    docker cp hyphenation_patterns_de.xml "${CONTAINER_NAME}${node}":/usr/share/elasticsearch/config/hyphenation_patterns_de.xml
   elif [ "x${MAJOR_VERSION}" == 'x8' ] || [ "x${MAJOR_VERSION}" == 'x9' ]; then
     if [ "${SECURITY_ENABLED}" == 'true' ]; then
       elasticsearch_password=${ELASTICSEARCH_PASSWORD-'changeme'}
@@ -111,6 +115,8 @@ do
         docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION}
 
         docker cp el_synonyms.txt "${CONTAINER_NAME}${node}":/usr/share/elasticsearch/config/el_synonyms.txt
+        docker cp german_words.txt "${CONTAINER_NAME}${node}":/usr/share/elasticsearch/config/german_words.txt
+        docker cp hyphenation_patterns_de.xml "${CONTAINER_NAME}${node}":/usr/share/elasticsearch/config/hyphenation_patterns_de.xml
     else
       docker run \
         --rm \
@@ -135,6 +141,8 @@ do
         docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION}
 
         docker cp el_synonyms.txt "${CONTAINER_NAME}${node}":/usr/share/elasticsearch/config/el_synonyms.txt
+        docker cp german_words.txt "${CONTAINER_NAME}${node}":/usr/share/elasticsearch/config/german_words.txt
+        docker cp hyphenation_patterns_de.xml "${CONTAINER_NAME}${node}":/usr/share/elasticsearch/config/hyphenation_patterns_de.xml
     fi
   fi
 done
